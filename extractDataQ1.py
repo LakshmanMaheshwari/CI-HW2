@@ -11,11 +11,21 @@ with open('queen11.txt','r') as file:
         i += 1
 #print(edgeList)
 print(len(edgeList))
-Graph = {}
+DirectedGraph = {}
 for node1, node2 in edgeList:
-    if node1 in Graph:
-        Graph[node1].append(node2)
+    if node1 in DirectedGraph:
+        DirectedGraph[node1].append(node2)
     else:
-        Graph[node1] = [node2]
+        DirectedGraph[node1] = [node2]
+
+Graph = {}
+for node1, neighbours in DirectedGraph.items():
+    Graph[node1] = neighbours.copy()
+
+    for j in neighbours:
+        if j in Graph:
+            Graph[j].append(node1)
+        else:
+            Graph[j] = [node1]
 
 print(Graph)
