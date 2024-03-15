@@ -39,7 +39,6 @@ smoke_particles = [Particle(width // 2, height, GRAY) for _ in range(num_particl
 num_fire_particles = 1000
 fire_particles = [Particle(width // 2, height, ORANGE) for _ in range(num_fire_particles)]
 
-
 running = True
 while running:
     for event in pygame.event.get():
