@@ -4,7 +4,7 @@ import math
 
 # Initialize Pygame
 pygame.init()
-
+pygame.mixer.init()
 # Set up the screen
 WIDTH, HEIGHT = 800, 600
 GRID_SIZE = 50
@@ -16,7 +16,10 @@ RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 PINK = (255, 0, 255)
 
+
+
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.mixer.music.load("CanYouHearTheMusic.mp3")
 pygame.display.set_caption("Nuclear Fission Simulation")
 
 class Nucleus:
@@ -63,9 +66,11 @@ n3 = [i for i in range(len(nuclei3))]
 n4 = [i for i in range(len(nuclei4))]
 
 electrons = []
+pygame.mixer.music.play()
 
 running = True
-while running:
+while running and pygame.mixer.music.get_busy():
+    pygame.time.Clock().tick(100)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -76,11 +81,6 @@ while running:
             magnitudey = random.randint(4,5)*0.2
             signy = random.randint(1,2)
             electrons.append(Electron(x, y, ((-1)**signx)*magnitudex, ((-1)**signy)*magnitudey, False))
-
-
-    # Move electrons
-    # for electron in electrons:
-    
 
     # Check for collisions with nuclei
     for electron in electrons[:]:
@@ -193,6 +193,8 @@ while running:
         nucleus.draw()
     for electron in electrons:
         electron.draw()
+
+    
     pygame.display.flip()
 
 pygame.quit()
