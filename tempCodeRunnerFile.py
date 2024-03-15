@@ -1,1 +1,0 @@
-a = time.perf_counter()

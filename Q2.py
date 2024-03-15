@@ -52,10 +52,10 @@ class Electron:
         pygame.draw.circle(screen, BLUE, (int(self.x), int(self.y)), ELECTRON_RADIUS)
 
 # Generate random nuclei
-nuclei1 = [Nucleus(random.randint(0, WIDTH/2), random.randint(0, HEIGHT/2)) for _ in range(NUM_NUCLEI//4)]
-nuclei2 = [Nucleus(random.randint(WIDTH/2, WIDTH), random.randint(0, HEIGHT/2)) for _ in range(NUM_NUCLEI//4)]
-nuclei3 = [Nucleus(random.randint(0, WIDTH/2), random.randint(HEIGHT/2, HEIGHT)) for _ in range(NUM_NUCLEI//4)]
-nuclei4 = [Nucleus(random.randint(WIDTH/2, WIDTH), random.randint(HEIGHT/2, HEIGHT)) for _ in range(NUM_NUCLEI//4)]
+nuclei1 = [Nucleus(random.randint(0, WIDTH//2), random.randint(0, HEIGHT//2)) for _ in range(NUM_NUCLEI//4)]
+nuclei2 = [Nucleus(random.randint(WIDTH//2, WIDTH), random.randint(0, HEIGHT//2)) for _ in range(NUM_NUCLEI//4)]
+nuclei3 = [Nucleus(random.randint(0, WIDTH//2), random.randint(HEIGHT//2, HEIGHT)) for _ in range(NUM_NUCLEI//4)]
+nuclei4 = [Nucleus(random.randint(WIDTH//2, WIDTH), random.randint(HEIGHT//2, HEIGHT)) for _ in range(NUM_NUCLEI//4)]
 nuclei1d = nuclei1.copy()
 nuclei2d = nuclei2.copy()
 nuclei3d = nuclei3.copy()
@@ -86,7 +86,7 @@ while running and pygame.mixer.music.get_busy():
     for electron in electrons[:]:
         electron.move()
         hit = False
-        if 0 <= electron.x < WIDTH/2 and 0 <= electron.y < HEIGHT/2:
+        if 0 <= electron.x < WIDTH//2 and 0 <= electron.y < HEIGHT//2:
             for i in n1:
                 nucleus = nuclei1[i]
                 distance = math.sqrt((electron.x - nucleus.x)**2 + (electron.y - nucleus.y)**2)
@@ -109,7 +109,7 @@ while running and pygame.mixer.music.get_busy():
                             new_electron = Electron(nucleus.x, nucleus.y, random.uniform(-0.3, 0.3), random.uniform(-0.3, 0.3), True)
                             electrons.append(new_electron)
                         break
-        elif WIDTH/2 <= electron.x <= WIDTH and 0 <= electron.y < HEIGHT/2:
+        elif WIDTH//2 <= electron.x <= WIDTH and 0 <= electron.y < HEIGHT//2:
             for i in n2:
                 nucleus = nuclei2[i]
                 distance = math.sqrt((electron.x - nucleus.x)**2 + (electron.y - nucleus.y)**2)
@@ -131,7 +131,7 @@ while running and pygame.mixer.music.get_busy():
                             new_electron = Electron(nucleus.x, nucleus.y, random.uniform(-0.3, 0.3), random.uniform(-0.3, 0.3), True)
                             electrons.append(new_electron)
                         break
-        elif 0 <= electron.x < WIDTH/2 and HEIGHT/2 <= electron.y <= HEIGHT:
+        elif 0 <= electron.x < WIDTH//2 and HEIGHT//2 <= electron.y <= HEIGHT:
             for i in n3:
                 nucleus = nuclei3[i]
                 distance = math.sqrt((electron.x - nucleus.x)**2 + (electron.y - nucleus.y)**2)
@@ -154,7 +154,7 @@ while running and pygame.mixer.music.get_busy():
                             new_electron = Electron(nucleus.x, nucleus.y, random.uniform(-0.3, 0.3), random.uniform(-0.3, 0.3), True)
                             electrons.append(new_electron)
                         break
-        elif WIDTH/2 <= electron.x <= WIDTH and HEIGHT/2 <= electron.y <= HEIGHT:
+        elif WIDTH//2 <= electron.x <= WIDTH and HEIGHT//2 <= electron.y <= HEIGHT:
             for i in n4:
                 nucleus = nuclei4[i]
                 distance = math.sqrt((electron.x - nucleus.x)**2 + (electron.y - nucleus.y)**2)
